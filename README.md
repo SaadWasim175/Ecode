@@ -1,4 +1,4 @@
-##Custom Web-Based Code Editor with File System Integration
+**Custom Web-Based Code Editor with File System Integration**
 
 Developed a sophisticated React/Next.js web application featuring a fully functional Monaco code editor integrated with the native File System Access API.
 
