@@ -64,6 +64,8 @@ const EditorPage = () => {
   const [selectedFile, setSelectedFile] = useState<FileData | null>(null);
   const [content, setContent] = useState('');
   const [saved, setSaved] = useState(true);
+  const [dirHandle, setDirHandle] = useState<FileSystemDirectoryHandle | null>(null);
+  console.log(dirHandle);
   const [loading, setLoading] = useState(false);
 
   const readDirectoryRecursive = async (
