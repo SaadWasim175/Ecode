@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { FolderOpen, Save } from 'lucide-react';
 
@@ -64,7 +64,6 @@ const EditorPage = () => {
   const [selectedFile, setSelectedFile] = useState<FileData | null>(null);
   const [content, setContent] = useState('');
   const [saved, setSaved] = useState(true);
-  const [dirHandle, setDirHandle] = useState<FileSystemDirectoryHandle | null>(null);
   const [loading, setLoading] = useState(false);
 
   const readDirectoryRecursive = async (
@@ -72,7 +71,9 @@ const EditorPage = () => {
     path = ''
   ): Promise<FileData[]> => {
     const files: FileData[] = [];
-    const anyDirHandle = directoryHandle as any;
+    const anyDirHandle = directoryHandle as unknown as {
+  entries(): AsyncIterable<[string, FileSystemHandle]>;
+};
 
     for await (const [name, handle] of anyDirHandle.entries()) {
       if (handle.kind === 'file') {
